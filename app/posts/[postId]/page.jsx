@@ -29,7 +29,6 @@ export default async function Page({params}){
       <AuthorCard authorId={post?.authorId}/>
       <h5 className="text-sm text-gray-500">{post?.timestamp?.toDate()?.toLocaleDateString()}</h5>
       </div>
-      {/* added backticks coz of minified react error */}
       <div dangerouslySetInnerHTML={{__html: post?.content}}></div>
        </section>
     </main>
