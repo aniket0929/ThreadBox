@@ -1,7 +1,7 @@
 export default function Contact(){
     return <main className="flex">
       <div className="w-3/6 flex flex-col justify-center items-center gap-20 ">
-       <div className="">
+       <div className="pl-3">
        <h1 className="text-6xl font-bold py-3 ">
             Reach out and say <span className="text-[#004aad]">Hello.</span>
         </h1>
