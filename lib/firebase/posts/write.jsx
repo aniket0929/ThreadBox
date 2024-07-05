@@ -30,30 +30,32 @@ export const createNewPost = async ({data,image})=>{
 };
 
 //update cstegory
-export const updatePost= async ({data,image})=>{
-    if(!data?.title){
-        throw new Error("name is undefined");
-    }
-    if(!data?.slug){
-        throw new Error("slug is undefined");
-    }
+ export const updatePost= async ({data,image})=>{
+     if(!data?.title){
+         throw new Error("title is undefined");
+     }
+     if(!data?.slug){
+         throw new Error("slug is undefined");
+     }
 
-    var imageURL = data?.imageURL;
-    if(image){
-        const imageRef= ref(storage, `posts/${data?.id}`)
-        await uploadBytes(imageRef, image )
-        const imageURL = await getDownloadURL(imageRef);
-    }
-    //folder to save images 
+     var imageURL = data?.imageURL;
+     if(image){
+         const imageRef= ref(storage, `posts/${data?.slug}`)
+         await uploadBytes(imageRef, image )
+          imageURL = await getDownloadURL(imageRef);
+     }
+     //folder to save images 
    
 
-    const firestoreRef = doc(db, `posts/${data.slug}`);
+    const firestoreRef = doc(db, `posts/${data.id}`);
     await updateDoc(firestoreRef, {
         ...data,
        imageURL: imageURL,
         timestamp: Timestamp.now(),
     });
 };
+
+
 
 export const deletePost = async(id)=>{
     if(!id){
